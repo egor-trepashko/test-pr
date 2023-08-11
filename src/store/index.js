@@ -58,12 +58,12 @@ export default new Vuex.Store({
         );
       }
       commit('changeNonce', state.nonce + 1);
-      let data = { ...this.fields, nonce: this.nonce };
+      let data = { ...state.fields, nonce: state.nonce };
       let response = await saveLocalStorage(data);
       dispatch('getLocalStorage');
       dispatch('addEvents',{ type: "button", key: "save",label: {
         sendValue: data,
-        localStorage: this.DataLocalStorage,
+        localStorage: state.DataLocalStorage,
         response,
       }})
     },

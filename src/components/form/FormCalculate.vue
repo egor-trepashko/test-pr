@@ -8,19 +8,19 @@
       </label>
       <label class="column-4">
         <span>кол-во</span>
-        <input :value="fields.amount" @input="handlerInput($event, 'amount')" />
+        <input :value="fields.qty" @input="handlerInput($event, 'qty')" />
       </label>
       <label class="column-4">
         <span>сумма</span>
-        <input :value="fields.qty" @input="handlerInput($event, 'qty')" />
+        <input :value="fields.amount" @input="handlerInput($event, 'amount')" />
       </label>
       <button @click="sendMessage">Send</button>
     </div>
     <div class="row label-row">
       <span class="column-4">цена: {{ fields.price }}</span>
-      <span class="column-4">кол-во: {{ fields.amount }}</span>
-      <span class="column-4">сумма: {{ fields.qty }}</span>
-      <span class="column-4">LocalStorage {{ DataLocalStorage }}</span>
+      <span class="column-4">кол-во: {{ fields.qty }}</span>
+      <span class="column-4">сумма: {{ fields.amount }}</span>
+      <span class="column-4">LocalStorage {{ dataLocalStorage }}</span>
     </div>
   </div>
 </template>
@@ -75,17 +75,17 @@ export default {
     qty() {
       return this.$store.state.fields.qty;
     },
-    DataLocalStorage() {
-      return this.$store.state.DataLocalStorage
+    dataLocalStorage() {
+      return this.$store.state.dataLocalStorage
     },
   },
   methods: {
     calculate(field) {
       let { qty, amount, price } = this.fields;
       let calc = {
-        price: () => qty / amount,
-        amount: () => qty / price,
-        qty: () => amount * price,
+        price: () => amount / qty,
+        qty: () => amount / price,
+        amount: () => qty * price,
       };
       this.$store.dispatch("changeFieldCalculate", {
         field,

@@ -8,11 +8,11 @@
       </label>
       <label class="column-4">
         <span>кол-во</span>
-        <input :value="fields.amount" @input="handlerInput($event, 'amount')" />
+        <input :value="fields.qty" @input="handlerInput($event, 'qty')" />
       </label>
       <label class="column-4">
         <span>сумма</span>
-        <input :value="fields.qty" @input="handlerInput($event, 'qty')" />
+        <input :value="fields.amount" @input="handlerInput($event, 'anount')" />
       </label>
       <button @click="sendMessage">Send</button>
     </div>
@@ -87,9 +87,9 @@ export default {
     calculate(field) {
       let { qty, amount, price } = this.fields;
       let calc = {
-        price: () => qty / amount,
-        amount: () => qty / price,
-        qty: () => amount * price,
+        price: () => amount / qty,
+        qty: () => amount / price,
+        amount: () => qty * price,
       };
       this.fields[field] = calc[field]();
     },
