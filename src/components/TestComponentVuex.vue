@@ -1,9 +1,7 @@
 <template>
   <div class="wrapper">
   <div class="container">
-    0
     <form-calculate/>
-    1
     <form-events/>
   </div>
   </div>
